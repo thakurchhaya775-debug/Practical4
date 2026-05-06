@@ -1,0 +1,210 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<title>Registration Form Validation</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffc1cc,#d5a6ff);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    resize: none;
+    height: 60px;
+}
+
+input[type="radio"] {
+    margin-left: 10px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background: #6c63ff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background: #4b47cc;
+}
+</style>
+
+</head>
+
+<body>
+<div class="container">
+<h2>STUDENT REGISTRATION FORM</h2>
+
+<form onsubmit="return validateForm()">
+
+User Name:<input type="text"id="uname"><br><br>
+
+Address:<textarea id="address"></textarea><br><br>
+
+Date of Birth:<input type="date"id="dob"><br><br>
+
+Email ID:<input type="text"id="email"><br><br>
+
+PAN Number:<input type="text"id="pan"><br><br>
+
+Aadhar Number:<input type="text"id="aadhar"><br><br>
+
+Contact Number:<input type="text"id="contact"><br><br>
+
+Password:<input type="text"id="password"><br><br>
+
+Gender:
+<input type="radio"name="gender"value="Male" id="male">Male
+<input type="radio"name="gender"value="Female" id="female">Female
+<input type="radio"name="gender"value="Other" id="other">Other
+<br><br>
+
+Education:
+<select id="education">
+<option value="">---Select---</option>
+<option>SSC</option>
+<option>HSC</option>
+<option>Graduate</option>
+<option>Post Graduate</option>
+</select><br><br>
+
+<input type="Submit"id="Submit"value="Submit">
+
+</form>
+</div>
+
+<script>
+function validateForm()
+{
+//Username Validation
+var uname=document.getElementById("uname").value;
+if(uname=="")
+{
+alert("Please Enter User Name");
+return false;
+}
+
+//Address Validation
+var address=document.getElementById("address").value;
+if(address=="")
+{
+alert("Please Enter address");
+return false;
+}
+
+//Date of Birth validation
+var dob=document.getElementById("dob").value;
+if(dob=="")
+{
+alert("Please Enter Date of Birth");
+return false;
+}
+
+//Email validation
+var email=document.getElementById("email").value;
+var emailPattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+if(!email.match(emailPattern))
+{
+alert("Please Enter valid Email ID");
+return false;
+}
+
+//PAN validation
+var pan=document.getElementById("pan").value;
+var panPattern=/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+if(!pan.match(panPattern))
+{
+alert("Please Enter valid PAN Number");
+return false;
+}
+
+//Aadhaar number validation
+var aadhar=document.getElementById("aadhar").value;
+if(aadhar.length !=12||isNaN(aadhar))
+{
+alert("Please enter valid 12-digit Aadhar Number");
+return false;
+}
+
+//Contact number validation
+var contact=document.getElementById("contact").value;
+if(contact.length!=10||isNaN(contact))
+{
+alert("Please Enter valid 10-digit Contact Number");
+return false;
+}
+
+//Password validation
+var password=document.getElementById("password").value;
+if(password=="")
+{
+alert("Please Enter a Password");
+return false;
+}
+
+if(password.length<8)
+{
+alert("Password must be at least 8 characters long");
+return false;
+}
+
+//Gender validation
+var male=document.getElementById("male");
+var female=document.getElementById("female");
+var other=document.getElementById("other");
+
+if(!male.checked && !female.checked && !other.checked)
+{
+alert("Please select your Gender");
+return false;
+}
+
+//Education validation
+var education=document.getElementById("education").value;
+if(education=="")
+{
+alert("Please select Education");
+return false;
+}
+
+alert("Form Submitted Successfully");
+return true;
+}
+</script>
+
+</body>
+</html>
